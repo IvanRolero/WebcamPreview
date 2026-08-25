@@ -1,0 +1,37 @@
+#include "resource.h"
+#include <windows.h>
+#include <commctrl.h>
+
+IDD_MAIN_DIALOG DIALOGEX 0, 0, 520, 380
+CAPTION "Webcam Snapshot Utility"
+STYLE DS_CENTER | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX | WS_CLIPCHILDREN
+FONT 8, "MS Shell Dlg", 0, 0, 1
+BEGIN
+    // Top Controls
+    COMBOBOX        IDC_CAMERA_COMBO, 10, 10, 180, 200, CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_RESOLUTION_COMBO, 10, 30, 180, 200, CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    DEFPUSHBUTTON   "Start Camera",   IDC_START_BUTTON, 200, 8, 70, 16
+    PUSHBUTTON      "Stop Camera",    IDC_STOP_BUTTON,  275, 8, 70, 16
+    PUSHBUTTON      "Take Photo",     IDC_TAKE_PHOTO_BUTTON, 360, 8, 145, 16
+
+    // Camera Preview Area - adjusted Y coordinates
+    CONTROL         "", -1, "Static", SS_ETCHEDFRAME, 10, 55, 340, 290
+    CONTROL         "", IDC_PREVIEW_VIDEO, "Static", SS_BLACKRECT, 20, 65, 320, 270
+
+    // Right Controls Panel (Brightness & Contrast) - adjusted Y coordinates
+    LTEXT           "Image Adjustments", IDC_STATIC, 360, 55, 145, 290, WS_BORDER
+    CONTROL         "", -1, "Static", SS_ETCHEDFRAME, 360, 55, 145, 290
+
+    LTEXT           "Brightness:", IDC_STATIC, 370, 75, 60, 10
+    LTEXT           "0", IDC_BRIGHTNESS_VAL, 460, 75, 35, 10, SS_RIGHT
+    CONTROL         "", IDC_BRIGHTNESS_SLIDER, "msctls_trackbar32", TBS_AUTOTICKS | WS_TABSTOP, 365, 90, 135, 22
+
+    LTEXT           "Contrast:", IDC_STATIC, 370, 125, 60, 10
+    LTEXT           "0", IDC_CONTRAST_VAL, 460, 125, 35, 10, SS_RIGHT
+    CONTROL         "", IDC_CONTRAST_SLIDER, "msctls_trackbar32", TBS_AUTOTICKS | WS_TABSTOP, 365, 140, 135, 22
+
+    PUSHBUTTON      "Reset Controls", IDC_RESET_ADJUST_BTN, 385, 180, 95, 18
+
+    // Status Bar
+    CONTROL         "", IDC_STATUSBAR, "msctls_statusbar32", WS_CHILD | WS_VISIBLE | SBARS_SIZEGRIP, 0, 360, 520, 20
+END
